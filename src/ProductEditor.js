@@ -28,7 +28,7 @@ export class ProductEditor extends Component
   render() {
     return <div className="m-2">
       <div className="form-group">
-        <lable>ID</lable>
+        <label>ID</label>
         <input
           className="form-control"
           name="id"
@@ -39,7 +39,7 @@ export class ProductEditor extends Component
       </div>
 
       <div className="form-group">
-        <lable>Name</lable>
+        <label>Name</label>
         <input
           className="form-control"
           name="name"
@@ -49,7 +49,7 @@ export class ProductEditor extends Component
       </div>
 
       <div className="form-group">
-        <lable>Category</lable>
+        <label>Category</label>
         <input
           className="form-control"
           name="category"
@@ -59,7 +59,7 @@ export class ProductEditor extends Component
       </div>
 
       <div className="form-group">
-        <lable>Price</lable>
+        <label>Price</label>
         <input
           className="form-control"
           name="price"
