@@ -1,13 +1,16 @@
 import { createStore, combineReducers } from "redux";
 import modelReducer from "./modelReducer";
 import stateReducer from "./stateReducer";
+import { CustomReducerEnhancer } from "./CustomReducerEnhancer";
 
-export default createStore(
-	combineReducers({
-		modelData: modelReducer,
-		stateData: stateReducer
-	})
-);
+const enhancerReducer = CustomReducerEnhancer(
+  combineReducers({
+    modelData: modelReducer,
+    stateData: stateReducer
+  })
+)
+
+export default createStore(enhancerReducer);
 
 export {
   saveProduct,
