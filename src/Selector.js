@@ -1,40 +1,39 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-import { ProductDisplay } from "./ProductDisplay";
-import { SupplierDisplay } from "./SupplierDisplay";
 
 export class Selector extends Component 
 {
+  renderMessage = (msg) =>
+    <h5 className="bg-info text-white m-2 p-2">{ msg}</h5>
+
   render() {
     return <Router>
       <div className="container-fluid">
         <div className="row">
           <div className="col-2">
             <div>
-              <Link to="/products">Products</Link>
+              <Link to="/data/one">Link #1</Link>
             </div>
             <div>
-              <Link to="/suppliers">Suppliers</Link>
+              <Link to="/data/two">Link #2</Link>
+            </div>
+            <div>
+              <Link to="/people/bob">Bob</Link>
             </div>
           </div>
           <div className="col">
             <Route
-              path="/products"
+              path="/data"
               render={
-                (routeProps) =>
-                  <ProductDisplay myProp="myValue"/>
+                () =>
+                  this.renderMessage("Route #1")
               }
             />
             <Route
-              path="/suppliers"
+              path="/data/two"
               render={
-                (routeProps) =>
-                  <React.Fragment>
-                    <h4 className="bg-info text-center text-white p-2">
-                      Suppliers
-                    </h4>
-                    <SupplierDisplay/>
-                  </React.Fragment>
+                () =>
+                  this.renderMessage("Route #2")
               }
             />
           </div>
