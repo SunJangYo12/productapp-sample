@@ -20,10 +20,23 @@ export class Selector extends Component
           <div className="col">
             <Route
               path="/products"
-              component={ ProductDisplay}/>
+              render={
+                (routeProps) =>
+                  <ProductDisplay myProp="myValue"/>
+              }
+            />
             <Route
               path="/suppliers"
-              component={ SupplierDisplay}/>
+              render={
+                (routeProps) =>
+                  <React.Fragment>
+                    <h4 className="bg-info text-center text-white p-2">
+                      Suppliers
+                    </h4>
+                    <SupplierDisplay/>
+                  </React.Fragment>
+              }
+            />
           </div>
         </div>
       </div>
