@@ -22,6 +22,9 @@ export class Selector extends Component
             <div>
               <Link to="/suppliers">Suppliers</Link>
             </div>
+            <div>
+              <Link to="/old/data">Old Link</Link>
+            </div>
           </div>
           <div className="col">
             <Switch>
@@ -32,6 +35,9 @@ export class Selector extends Component
                 path="/suppliers"
                 component={ SupplierDisplay }/>
 
+              <Redirect
+                from="/old/data"
+                to="/suppliers"/>
               <Redirect
                 to="/products"/>
             </Switch>               
