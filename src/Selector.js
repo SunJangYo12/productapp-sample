@@ -21,29 +21,25 @@ export class Selector extends Component
               <Link to="/data/two">Link #2</Link>
             </div>
             <div>
+              <Link to="/data/there">Link #3</Link>
+            </div>
+            <div>
               <Link to="/people/bob">Bob</Link>
+            </div>
+            <div>
+              <Link to="/people/alice">Alice</Link>
             </div>
           </div>
           <div className="col">
             <Route
               path={
-                ["/data/one", "/people/bob"]
+                ["/data/(one|there)", "/people/b*"]
               }
-              exact={ true}
               render={
                 () =>
                   this.renderMessage("Route #1")
               }
-            />
-            <Route
-              path={
-                ["/data", "/people"]
-              }
-              render={
-                () =>
-                  this.renderMessage("Route #2")
-              }
-            />
+            />                
           </div>
         </div>
       </div>
