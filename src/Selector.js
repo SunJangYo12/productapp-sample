@@ -14,16 +14,24 @@ export class Selector extends Component
         <div className="row">
           <div className="col-2">
             <div>
-              <Link to="/">Default</Link>
+              <Link
+                className="m-2 btn btn-block btn-primary"
+                to="/">Default</Link>
             </div>
             <div>
-              <Link to="/products">Products</Link>
+              <Link
+                className="m-2 btn btn-block btn-primary"
+                to="/products">Products</Link>
             </div>
             <div>
-              <Link to="/suppliers">Suppliers</Link>
+              <Link
+                className="m-2 btn btn-block btn-primary"
+                to="/suppliers">Suppliers</Link>
             </div>
             <div>
-              <Link to="/old/data">Old Link</Link>
+              <Link
+                className="m-2 btn btn-block btn-primary"
+                to="/old/data">Old Link</Link>
             </div>
           </div>
           <div className="col">
