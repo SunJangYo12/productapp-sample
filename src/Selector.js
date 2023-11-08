@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { ProductDisplay } from "./ProductDisplay";
+import { SupplierDisplay } from "./SupplierDisplay";
 
 export class Selector extends Component 
 {
@@ -12,34 +14,31 @@ export class Selector extends Component
         <div className="row">
           <div className="col-2">
             <div>
-              <Link to="/data">Data</Link>
+              <Link to="/">Default</Link>
             </div>
             <div>
-              <Link to="/data/one">Link #1</Link>
+              <Link to="/products">Products</Link>
             </div>
             <div>
-              <Link to="/data/two">Link #2</Link>
-            </div>
-            <div>
-              <Link to="/data/there">Link #3</Link>
-            </div>
-            <div>
-              <Link to="/people/bob">Bob</Link>
-            </div>
-            <div>
-              <Link to="/people/alice">Alice</Link>
+              <Link to="/suppliers">Suppliers</Link>
             </div>
           </div>
           <div className="col">
-            <Route
-              path={
-                ["/data/(one|there)", "/people/b*"]
-              }
-              render={
-                () =>
-                  this.renderMessage("Route #1")
-              }
-            />                
+            <Switch>
+              <Route
+                path="/products"
+                component={ ProductDisplay }/>
+              <Route
+                path="/suppliers"
+                component={ SupplierDisplay }/>
+
+              <Route
+                render={
+                  () =>
+                    this.renderMessage("Fallback Route")
+                }
+              />
+            </Switch>               
           </div>
         </div>
       </div>
