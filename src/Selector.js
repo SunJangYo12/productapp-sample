@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, NavLink, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter as Router, NavLink, Route, Switch, Redirect } from "react-router-dom";
 import { ProductDisplay } from "./ProductDisplay";
 import { SupplierDisplay } from "./SupplierDisplay";
 
