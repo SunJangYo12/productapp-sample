@@ -12,6 +12,9 @@ export class Selector extends Component
         <div className="row">
           <div className="col-2">
             <div>
+              <Link to="/data">Data</Link>
+            </div>
+            <div>
               <Link to="/data/one">Link #1</Link>
             </div>
             <div>
@@ -24,6 +27,7 @@ export class Selector extends Component
           <div className="col">
             <Route
               path="/data"
+              exact={ true}
               render={
                 () =>
                   this.renderMessage("Route #1")
