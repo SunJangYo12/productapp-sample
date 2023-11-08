@@ -26,7 +26,9 @@ export class Selector extends Component
           </div>
           <div className="col">
             <Route
-              path="/data"
+              path={
+                ["/data/one", "/people/bob"]
+              }
               exact={ true}
               render={
                 () =>
@@ -34,7 +36,9 @@ export class Selector extends Component
               }
             />
             <Route
-              path="/data/two"
+              path={
+                ["/data", "/people"]
+              }
               render={
                 () =>
                   this.renderMessage("Route #2")
