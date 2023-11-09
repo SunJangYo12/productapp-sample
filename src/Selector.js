@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, NavLink, Route, Switch, Redirect } from "react-router-dom";
 import { ProductDisplay } from "./ProductDisplay";
 import { SupplierDisplay } from "./SupplierDisplay";
+import { RouteInfo } from "./routing/RouteInfo";
 
 export class Selector extends Component 
 {
@@ -23,6 +24,11 @@ export class Selector extends Component
                 className="m-2 btn btn-block btn-primary"
                 activeClassName="active"
                 to="/suppliers">Suppliers</NavLink>
+
+              <NavLink
+                className="m-2 btn btn-block btn-primary"
+                activeClassName="active"
+                to="/info">Route Info</NavLink>
             
           </div>
           <div className="col">
@@ -33,6 +39,9 @@ export class Selector extends Component
               <Route
                 path="/suppliers"
                 component={ SupplierDisplay }/>
+              <Route
+                path="/info"
+                component={ RouteInfo }/>
 
               <Redirect
                 to="/products"/>
