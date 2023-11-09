@@ -31,11 +31,13 @@ export class RouteInfo extends Component
       <table className="table table-sm table-striped bg-light">
         <tbody>
           {
-            this.props.match.params.datatype === "match" &&
+            (this.props.match.params.datatype === undefined ||
+             this.props.match.params.datatype === "match") &&
             this.renderTable("Match", this.props.match, ["url","path","params","isExact"])
           }
           {
-            this.props.match.params.datatype === "location" &&
+            (this.props.match.params.datatype === undefined ||
+             this.props.match.params.datatype === "location") &&
             this.renderTable("Location", this.props.location, ["key","pathname","search","hash","state"])
           }
         </tbody>

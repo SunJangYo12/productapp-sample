@@ -38,6 +38,11 @@ export class Selector extends Component
                 className="m-2 btn btn-block btn-primary"
                 activeClassName="active"
                 to="/info/location">Location</NavLink>
+
+              <NavLink
+                className="m-2 btn btn-block btn-primary"
+                activeClassName="active"
+                to="/info">All Info</NavLink>
             
           </div>
           <div className="col">
@@ -49,7 +54,7 @@ export class Selector extends Component
                 path="/suppliers"
                 component={ SupplierDisplay }/>
               <Route
-                path="/info/:datatype"
+                path="/info/:datatype?"
                 component={ RouteInfo }/>
 
               <Redirect
