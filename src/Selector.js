@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter, Prompt } from "react-router-dom";
 import { ProductDisplay } from "./ProductDisplay";
 import { SupplierDisplay } from "./SupplierDisplay";
 import { RouteInfo } from "./routing/RouteInfo";
@@ -49,6 +49,11 @@ export class Selector extends Component
             
           </div>
           <div className="col">
+            <Prompt
+              message={ loc =>
+                `Do you want to navigation to ${loc.pathname}`
+              }
+            />
             <RouteInfoHOC/>
             <Switch>
               <Route
