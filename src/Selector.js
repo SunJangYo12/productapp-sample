@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect, withRouter, Prompt } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { ToggleLink } from "./routing/ToggleLink";
-import { CustomPrompt } from "./routing/CustomPrompt";
+import { RoutedDisplay } from "./routing/RoutedDisplay";
 
 export class Selector extends Component 
 {
@@ -34,7 +34,8 @@ export class Selector extends Component
     const routes = React.Children.map(this.props.children, child =>({
         component: child,
         name: child.props.name,
-        url: `/${child.props.name.toLowerCase()}`
+        url: `/${child.props.name.toLowerCase()}`,
+        datatype: child.props.datatype
       })
     );
 
@@ -53,24 +54,14 @@ export class Selector extends Component
             
           </div>
           <div className="col">
-            <CustomPrompt
-              show={ this.state.showPrompt}
-              message={ this.state.message}
-              callback={ this.state.callback}
-            />
-
-            <Prompt
-              message={ loc =>
-                `Do you want to navigation to ${loc.pathname}`
-              }
-            />
+            
             <Switch>
               {
                 routes.map(r =>
                   <Route
                     key={ r.url}
-                    path={ r.url}
-                    render={ () => r.component}
+                    path={ `/:datatype(${r.datatype})/:mode?/:id?`}
+                    component={ RoutedDisplay(r.datatype)}
                   />
                 )
               }
