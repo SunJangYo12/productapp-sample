@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from "react-router-dom";
 import { ProductDisplay } from "./ProductDisplay";
 import { SupplierDisplay } from "./SupplierDisplay";
 import { RouteInfo } from "./routing/RouteInfo";
 import { ToggleLink } from "./routing/ToggleLink";
+
+const RouteInfoHOC = withRouter(RouteInfo);
 
 export class Selector extends Component 
 {
@@ -47,6 +49,7 @@ export class Selector extends Component
             
           </div>
           <div className="col">
+            <RouteInfoHOC/>
             <Switch>
               <Route
                 path="/products"
