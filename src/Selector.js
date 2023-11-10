@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect, withRouter, Prompt } from "react-router-dom";
-import { ProductDisplay } from "./ProductDisplay";
-import { SupplierDisplay } from "./SupplierDisplay";
-import { RouteInfo } from "./routing/RouteInfo";
 import { ToggleLink } from "./routing/ToggleLink";
 import { CustomPrompt } from "./routing/CustomPrompt";
-
-const RouteInfoHOC = withRouter(RouteInfo);
 
 export class Selector extends Component 
 {
@@ -35,39 +30,26 @@ export class Selector extends Component
 
 
   render() {
+
+    const routes = React.Children.map(this.props.children, child =>({
+        component: child,
+        name: child.props.name,
+        url: `/${child.props.name.toLowerCase()}`
+      })
+    );
+
     return <Router getUserConfirmation={this.customGetUserConfirmation}>
       <div className="container-fluid">
         <div className="row">
           <div className="col-2">
            
-              <ToggleLink
-                className="m-2 btn btn-block btn-primary"
-                activeClassName="active"
-                to="/products">Products</ToggleLink>
-            
-              <ToggleLink
-                className="m-2 btn btn-block btn-primary"
-                activeClassName="active"
-                to="/suppliers">Suppliers</ToggleLink>
-
-              <ToggleLink
-                className="m-2 btn btn-block btn-primary"
-                activeClassName="active"
-                to="/info">Route Info</ToggleLink>
-
-              <ToggleLink
-                className="m-2 btn btn-block btn-primary"
-                activeClassName="active"
-                to="/info/match">Match</ToggleLink>
-              <ToggleLink
-                className="m-2 btn btn-block btn-primary"
-                activeClassName="active"
-                to="/info/location">Location</ToggleLink>
-
-              <ToggleLink
-                className="m-2 btn btn-block btn-primary"
-                activeClassName="active"
-                to="/info">All Info</ToggleLink>
+            {
+              routes.map(r =>
+                <ToggleLink key={r.url} to={r.url}>
+                  { r.name }
+                </ToggleLink>
+              )
+            }
             
           </div>
           <div className="col">
@@ -82,20 +64,19 @@ export class Selector extends Component
                 `Do you want to navigation to ${loc.pathname}`
               }
             />
-            <RouteInfoHOC/>
             <Switch>
-              <Route
-                path="/products"
-                component={ ProductDisplay }/>
-              <Route
-                path="/suppliers"
-                component={ SupplierDisplay }/>
-              <Route
-                path="/info/:datatype?"
-                component={ RouteInfo }/>
+              {
+                routes.map(r =>
+                  <Route
+                    key={ r.url}
+                    path={ r.url}
+                    render={ () => r.component}
+                  />
+                )
+              }
+              
+              <Redirect to={ routes[0].url }/>
 
-              <Redirect
-                to="/products"/>
             </Switch>               
           </div>
         </div>
