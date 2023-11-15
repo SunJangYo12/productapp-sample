@@ -2,8 +2,9 @@ import Axios from "axios";
 
 export class RestDataSource
 {
-  constructor(base_url) {
+  constructor(base_url, errorCallback) {
     this.BASE_URL = base_url;
+    this.handleError = errorCallback;
   }
 
   GetData(callback) {
@@ -32,12 +33,17 @@ export class RestDataSource
 
   async SendRequest(method, url, callback, data)
   {
-    callback(
-      (await Axios.request({
-        method: method,
-        url: url,
-        data: data
-      })).data
-    );
+    try {
+      callback(
+        (await Axios.request({
+          method: method,
+          url: url,
+          data: data
+        })).data
+      );
+    }
+    catch(err) {
+      this.handleError("Operation Failed: Network Error");
+    }
   }
 }
