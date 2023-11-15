@@ -4,6 +4,7 @@ import stateReducer from "./stateReducer";
 import { CustomReducerEnhancer } from "./CustomReducerEnhancer";
 import { multiActions } from "./multiActionMiddleware";
 import { asyncEnhancer } from "./asyncEnhancer";
+import { createRestMiddleware } from "../webservice/RestMiddleware";
 
 const enhancerReducer = CustomReducerEnhancer(
   combineReducers({
@@ -12,10 +13,16 @@ const enhancerReducer = CustomReducerEnhancer(
   })
 )
 
+const restMiddleware = createRestMiddleware(
+  "http://192.168.43.1:3500/api/products",
+  "http://192.168.43.1:3500/api/suppliers"
+)
+
 export default createStore(
 	enhancerReducer,
 	compose(
-		applyMiddleware(multiActions),
+    applyMiddleware(multiActions),
+    applyMiddleware(restMiddleware),
 		asyncEnhancer(2000)
 	)
 );
