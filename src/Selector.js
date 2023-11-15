@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { ToggleLink } from "./routing/ToggleLink";
 import { RoutedDisplay } from "./routing/RoutedDisplay";
+import { IsolatedTable } from "./IsolatedTable";
 
 export class Selector extends Component 
 {
@@ -43,6 +44,8 @@ export class Selector extends Component
       <div className="container-fluid">
         <div className="row">
           <div className="col-2">
+
+            <ToggleLink to="/isolated">Isolated Data</ToggleLink>
            
             {
               routes.map(r =>
@@ -56,6 +59,11 @@ export class Selector extends Component
           <div className="col">
             
             <Switch>
+              <Route
+                path="/isolated"
+                component={ IsolatedTable }
+              />
+
               {
                 routes.map(r =>
                   <Route
