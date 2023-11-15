@@ -24,7 +24,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "reactstart": "react-scripts start",
-    "json": "json-server --p 3500 -r api.routes.json restData.js"
+    "json": "json-server --host 192.168.43.1 --p 3500 -r api.routes.json restData.js"
   },
   "eslintConfig": {
     "extends": [

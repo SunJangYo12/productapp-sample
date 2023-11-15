@@ -1,7 +1,17 @@
 import React, { Component } from "react";
+import { RestDataSource } from "./webservice/RestDataSource";
 
 export class IsolatedTable extends Component
 {
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      products: []
+    }
+    this.dataSource = new RestDataSource("http://192.168.43.1:3500/api/products");
+  }
+
   render() {
     return <table className="table table-sm table-striped table-bordered">
       <thead>
@@ -20,10 +30,26 @@ export class IsolatedTable extends Component
       </thead>
 
       <tbody>
-        <tr>
-          <td colSpan="5" className="text-center p-2">No Data</td>
-        </tr>
+        {
+          this.state.products.map(p =>
+            <tr key={ p.id}>
+              <td>{ p.id}</td>
+              <td>{ p.name}</td>
+              <td>{ p.category}</td>
+              <td className="text-right">${Number(p.price).toFixed(2)}</td>
+              <td></td>
+            </tr>
+          )
+        }
       </tbody>
     </table>
+  }
+
+  componentDidMount() {
+    this.dataSource.GetData(data =>
+      this.setState({
+        products: data
+      })
+    );
   }
 }
