@@ -12,11 +12,11 @@ export class RestDataSource
 
   async SendRequest(method, url, callback)
   {
-    let response = await Axios.request({
-      method: method,
-      url: url
-    });
-
-    callback(response.data);
+    callback(
+      (await Axios.request({
+        method: method,
+        url: url
+      })).data
+    );
   }
 }
