@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import { ToggleLink } from "./routing/ToggleLink";
 import { RoutedDisplay } from "./routing/RoutedDisplay";
 import { IsolatedTable } from "./IsolatedTable";
+import { IsolatedEditor } from "./IsolatedEditor";
 
 export class Selector extends Component 
 {
@@ -61,7 +62,12 @@ export class Selector extends Component
             <Switch>
               <Route
                 path="/isolated"
+                exact={ true}
                 component={ IsolatedTable }
+              />
+              <Route
+                path="/isolated/:mode/:id?"
+                component={ IsolatedEditor }
               />
 
               {
