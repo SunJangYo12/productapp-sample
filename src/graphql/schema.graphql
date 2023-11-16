@@ -14,5 +14,7 @@ type supplier {
 
 type Query {
   products: [product],
-  suppliers: [supplier]
+  product(id: ID!): product,
+  suppliers: [supplier],
+  supplier(id: ID!): supplier
 }
