@@ -1,5 +1,15 @@
 var data = require("../../restData")();
 
+const mapIdsToProducts = (supplier, nameFilter) =>
+  supplier.products.map(id =>
+    data.products.find(p =>
+      p.id === Number(id)
+    )
+  )
+  .filter(p =>
+    p.name.toLowerCase().includes(nameFilter.toLowerCase())
+  );
+
 module.exports = {
   products: () => data.products,
 
@@ -9,9 +19,8 @@ module.exports = {
 
   suppliers: () => data.suppliers.map(s => ({
       ...s,
-      products: () => s.products.map(id =>
-        data.products.find(p => p.id === Number(id))
-      )
+      products: ({nameFilter}) =>
+        mapIdsToProducts(s, nameFilter)
     })
   ),
 
@@ -24,12 +33,8 @@ module.exports = {
     if (result) {
       return {
         ...result,
-        products: () =>
-          result.products.map(id =>
-            data.products.find(p =>
-              p.id === Number(id)
-            )
-          )
+        products: ({nameFilter}) =>
+          mapIdsToProducts(result, nameFilter)
       }
     }
   }
