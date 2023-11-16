@@ -3,8 +3,8 @@ var data = require("../../restData")();
 module.exports = {
   products: () => data.products,
 
-  product: (args) => data.products.find(p =>
-    p.id === parseInt(args.id)
+  product: ({id}) => data.products.find(p =>
+    p.id === parseInt(id)
   ),
 
   suppliers: () => data.suppliers.map(s => ({
@@ -15,10 +15,10 @@ module.exports = {
     })
   ),
 
-  supplier: (args) =>
+  supplier: ({id}) =>
   {
     const result = data.suppliers.find(s =>
-      s.id === parseInt(args.id)
+      s.id === parseInt(id)
     );
 
     if (result) {
