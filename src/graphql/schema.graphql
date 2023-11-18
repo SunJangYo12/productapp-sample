@@ -28,7 +28,10 @@ input productInput {
 
 type Mutation {
   storeProduct(
-    product: productInput
+    id: ID,
+    name: String!,
+    category: String!,
+    price: Float!
   ): product
 
   storeSupplier(
@@ -37,4 +40,7 @@ type Mutation {
     city: String!,
     products: [Int]
   ): supplier
+
+  deleteProduct(id: ID!): ID
+  deleteSupplier(id: ID!): ID
 }

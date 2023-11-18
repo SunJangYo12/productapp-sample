@@ -1,4 +1,4 @@
-var data = require("../../restData")();
+var data = require("../../graphqlData")();
 
 const mapIdsToProducts = (supplier, nameFilter) =>
   supplier.products.map(id =>
@@ -41,18 +41,19 @@ module.exports = {
     }
   },
 
-  storeProduct({product})
+  storeProduct(args)
   {
-    if (product.id == null) {
+    const product = {
+      ...args,
+      id: Number(args.id)
+    };
+
+    if (args.id == null || product.id === 0)
+    {
       product.id = nextId++;
       data.products.push(product);
     }
     else {
-      product = {
-        ...product,
-        id: Number(product.id)
-      };
-
       data.products = data.products.map(p =>
         p.id === product.id ? product : p
       );
@@ -90,5 +91,25 @@ module.exports = {
           mapIdsToProducts(result, nameFilter)
       }
     }
+  },
+
+  deleteProduct({id}) {
+    id = Number(id);
+    data.products = data.products.filter(p => p.id !== id);
+    data.suppliers = data.suppliers.map(s => {
+      s.products = s.products.filter(p => 
+        p !== id
+      );
+      return s;
+    })
+    return id;
+  },
+
+  deleteSupplier({id}) {
+    data.suppliers = data.suppliers.filter(s =>
+      s.id !== Number(id)
+    )
+    return id;
   }
+
 }
