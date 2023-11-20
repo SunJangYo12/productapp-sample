@@ -43,7 +43,7 @@ export const suppliers = {
         }
       }
     `
-  }
+  },
   getOne: {
     name: "supplier",
     graphql:

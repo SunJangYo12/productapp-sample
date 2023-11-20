@@ -36,7 +36,7 @@ export class GraphQLDataSource
     try {
       let payload = {
         query: query.graphql,
-        variables: data == null ? null : ...data
+        variables: data == null ? null : { ...data }
       }
 
       callback(
