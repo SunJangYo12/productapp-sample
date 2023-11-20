@@ -8,7 +8,7 @@ export const EditorConnector = (dataType, presentationComponent) =>
   const mapStateToProps = (storeData, ownProps) => 
   {
     const mode = ownProps.match.params.mode;
-    const id = Number(ownProps.match.params.id);
+    const id = ownProps.match.params.id;
 
     return {
       editing: mode === "edit" || mode === "create",

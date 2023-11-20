@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { deleteProduct, deleteSupplier } from "./modelActionCreators";
 import { PRODUCTS, SUPPLIERS } from "./dataTypes";
 import { withRouter } from "react-router-dom";
-import { getData } from "../webservice/RestMiddleware";
+import { getData } from "../graphql/GraphQLMiddleware";
 import { DataGetter } from "../DataGetter";
 
 export const TableConnector = (dataType, presentationComponent) =>
@@ -17,19 +17,8 @@ export const TableConnector = (dataType, presentationComponent) =>
     }
     else {
       return {
-        suppliers: storeData.modelData[SUPPLIERS].map(supp =>
-          ({
-            ...supp,
-            products: supp.products.map(id =>
-              storeData.modelData[PRODUCTS].find(p =>
-                p.id === Number(id)
-              ) || id
-            ).map(val =>
-              val.name || val
-            )
-          })
-        )
-      }
+        suppliers: storeData.modelData[SUPPLIERS]
+      };
     }
   }
 
